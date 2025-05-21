@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Monster Hunter</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
 
@@ -24,9 +24,35 @@
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+  <header>
+    <h1>Monster Hunter</h1>
+  </header>
+
+  <article id="display">
+    <h2>Fight!</h2>
+
+    <section id="Players">
+      <p id="hunter">Hunter</p>
+      <div id="hunter-health-bar">
+        <div id="hunter-health-fill" class="health-fill"></div>
+      </div>
+        <p id="monster">Monster</p>
+      <div id="monster-health-bar">
+      <div id="monster-health-fill" class="health-fill"></div>
+      </div>
+    </div>
+
+    <section id="commands">
+      <input type="button" id="startgame" name="startgame" value="Start a new game">
+      <input type="button" id="attack" name="attack" value="Attack">
+      <input type="button" id="spk" name="spk" value="Special Attack">
+      <input type="button" id="heal" name="heal" value="Heal">
+      <input type="button" id="give-up" name="give-up" value="Give-Up">
+    </section>
+
+    <section id="fight-log"></section>
+
+  </article>
 
 </body>
 
