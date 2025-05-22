@@ -3,6 +3,8 @@
 const hunterDisplay = document.getElementById('hunter');
 const monsterDisplay = document.getElementById('monster');
 
+const hunterHealthNumber = document.getElementById('hunter-health-number');
+const monsterHealthNumber = document.getElementById('monster-health-number');
 const hunterHealthFill = document.getElementById('hunter-health-fill');
 const monsterHealthFill = document.getElementById('monster-health-fill');
 
@@ -52,6 +54,8 @@ function getRandomDamage(min, max) {
 function updateHealthBars() {
     hunterHealthFill.style.width = `${(hunterHealth/maxHealth)*100}%`;
     monsterHealthFill.style.width = `${(monsterHealth/maxHealth)*100}%`;
+    hunterHealthNumber.textContent = `${Math.round((hunterHealth/maxHealth)*100)}`;
+    monsterHealthNumber.textContent = `${Math.round((monsterHealth/maxHealth)*100)}`;
 
     if (hunterHealth > 50) {
         hunterHealthFill.style.backgroundColor = "green";
