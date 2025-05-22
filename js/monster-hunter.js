@@ -15,6 +15,8 @@ const hunterGiveUpBtn = document.getElementById('give-up');
 
 const fightLog = document.getElementById('fight-log');
 
+const HEAL_AMOUNT = 10;
+
 let hunterHealth = 100;
 let monsterHealth = 100;
 let maxHealth = 100;
@@ -65,3 +67,30 @@ function updateHealthBars() {
 updateHealthBars();
 
 startGameBtn.addEventListener('click', startGame);
+
+hunterAttackBtn.addEventListener('click', function(){
+    let damage = getRandomDamage(3, 10);
+    monsterHealth = Math.max(0, monsterHealth - damage);
+    logMessage(`Hunter attacks, Monster has taken ${damage}HP of damage`);
+    updateHealthBars();
+});
+
+hunterSpecialBtn.addEventListener('click', function(){
+    let damage = getRandomDamage(10, 20);
+    monsterHealth = Math.max(0, monsterHealth - damage);
+    logMessage(`Hunter used his special attack, Monster as taken ${damage}HP of damage`);
+    updateHealthBars();
+});
+
+hunterHealBtn.addEventListener('click', function(){
+    hunterHealth = Math.min(maxHealth, hunterHealth + HEAL_AMOUNT);
+    logMessage('Hunter has healed 10HP!');
+    updateHealthBars();
+});
+
+hunterGiveUpBtn.addEventListener('click', function(){
+    if (gameActive && turn === "hunter") {
+        gameActive = false;
+        logMessage("Hunter has given up! The Monster wins!");
+    }
+});
