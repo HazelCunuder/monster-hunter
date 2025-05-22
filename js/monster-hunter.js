@@ -12,6 +12,7 @@ const hunterAttackBtn = document.getElementById('attack');
 const hunterSpecialBtn = document.getElementById('spk');
 const hunterHealBtn = document.getElementById('heal');
 const hunterGiveUpBtn = document.getElementById('give-up');
+const playAgainBtn = document.getElementById('play-again-btn');
 
 const fightLog = document.getElementById('fight-log');
 
@@ -23,12 +24,16 @@ let maxHealth = 100;
 let gameActive = false;
 let turn = "none";
 
+toggleHunterActions(false);
+
 function startGame(){
     hunterHealth = maxHealth;
     monsterHealth = maxHealth;
     updateHealthBars();
     gameActive = true;
-    toggleHunterActions(enable);
+    toggleHunterActions(true);
+    startGameBtn.style.display = 'none';
+    playAgainBtn.style.display = 'none';
     turn = "hunter";
     fightLog.innerHTML = "";
     logMessage("Game Start! Hunter's turn.");
@@ -69,12 +74,14 @@ updateHealthBars();
 
 startGameBtn.addEventListener('click', startGame);
 
+playAgainBtn.addEventListener('click', startGame);
+
 hunterAttackBtn.addEventListener('click', function(){
     let damage = getRandomDamage(3, 10);
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter attacks, Monster has taken ${damage}HP of damage`);
     updateHealthBars();
-    checkGameOver();
+    if (checkGameOver()) return;
 });
 
 hunterSpecialBtn.addEventListener('click', function(){
@@ -82,21 +89,20 @@ hunterSpecialBtn.addEventListener('click', function(){
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter used his special attack, Monster as taken ${damage}HP of damage`);
     updateHealthBars();
-    checkGameOver();
+    if (checkGameOver()) return;
 });
 
 hunterHealBtn.addEventListener('click', function(){
     hunterHealth = Math.min(maxHealth, hunterHealth + HEAL_AMOUNT);
     logMessage('Hunter has healed 10HP!');
     updateHealthBars();
-    checkGameOver();
+    if (checkGameOver()) return;
 });
 
 hunterGiveUpBtn.addEventListener('click', function(){
     if (gameActive) {
         gameActive = false;
         logMessage("Hunter has given up! The Monster wins!");
-        checkGameOver();
         endGame(false);
     }
 });
@@ -117,8 +123,25 @@ function checkGameOver() {
 
 function endGame(playerWon){
     gameActive = false;
-    toggleHunterActions(disable);
-    alert(playerWon ? "Congratulations! You have defeated the Monster!" : "You Died.");
-    let playAgain = prompt('Do you want to play again ? (yes/no)').toLowerCase();
-    playAgain === 'yes' ? startGame() : alert("Thanks for playing");
+    playerWon ? logMessage("Congratulations! You have defeated the Monster!") : logMessage("You Died.");
+    toggleHunterActions(false);
+    playAgainBtn.style.display = 'block';
+};
+
+function toggleHunterActions(enable){
+    hunterAttackBtn.disabled = !enable; 
+    hunterSpecialBtn.disabled = !enable;
+    hunterHealBtn.disabled = !enable;
+    hunterGiveUpBtn.disabled = !enable;
+    if (enable) {
+        hunterAttackBtn.style.display = "block"; 
+        hunterSpecialBtn.style.display = "block";
+        hunterHealBtn.style.display = "block";
+        hunterGiveUpBtn.style.display = "block";
+    } else {
+        hunterAttackBtn.style.display = "none";
+        hunterSpecialBtn.style.display = "none";
+        hunterHealBtn.style.display = "none";
+        hunterGiveUpBtn.style.display = "none";
+    }
 };
