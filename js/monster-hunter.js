@@ -81,7 +81,12 @@ hunterAttackBtn.addEventListener('click', function(){
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter attacks, Monster has taken ${damage}HP of damage`);
     updateHealthBars();
-    if (checkGameOver()) return;
+    if (checkGameOver()) {
+        return;
+    } else {
+        turn = 'monster';
+        monsterTurn();
+    };
 });
 
 hunterSpecialBtn.addEventListener('click', function(){
@@ -89,14 +94,24 @@ hunterSpecialBtn.addEventListener('click', function(){
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter used his special attack, Monster as taken ${damage}HP of damage`);
     updateHealthBars();
-    if (checkGameOver()) return;
+    if (checkGameOver()) {
+        return;
+    } else {
+        turn = 'monster';
+        monsterTurn();
+    };
 });
 
 hunterHealBtn.addEventListener('click', function(){
     hunterHealth = Math.min(maxHealth, hunterHealth + HEAL_AMOUNT);
     logMessage('Hunter has healed 10HP!');
     updateHealthBars();
-    if (checkGameOver()) return;
+    if (checkGameOver()) {
+        return;
+    } else {
+        turn = 'monster';
+        monsterTurn();
+    };
 });
 
 hunterGiveUpBtn.addEventListener('click', function(){
@@ -128,6 +143,21 @@ function endGame(playerWon){
     playAgainBtn.style.display = 'block';
 };
 
+function monsterTurn() {
+    turn = 'monster';
+    toggleHunterActions(false);
+    let damage = getRandomDamage(5,10);
+    hunterHealth = Math.max(0, hunterHealth - damage);
+    logMessage(`Monster attacks, Hunter has taken ${damage}HP of damage`);
+    updateHealthBars();
+    if (checkGameOver()) {
+        return;
+    } else {
+        turn = 'hunter';
+        toggleHunterActions(true);
+    };
+};
+
 function toggleHunterActions(enable){
     hunterAttackBtn.disabled = !enable; 
     hunterSpecialBtn.disabled = !enable;
@@ -143,5 +173,6 @@ function toggleHunterActions(enable){
         hunterSpecialBtn.style.display = "none";
         hunterHealBtn.style.display = "none";
         hunterGiveUpBtn.style.display = "none";
-    }
+    };
 };
+
