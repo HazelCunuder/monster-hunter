@@ -30,4 +30,21 @@ function startGame(){
 function updateHealthBars() {
     hunterHealthFill.style.width = `${(hunterHealth/maxHealth)*100}%`;
     monsterHealthFill.style.width = `${(monsterHealth/maxHealth)*100}%`;
-}
+
+    if (hunterHealth > 50) {
+        hunterHealthFill.style.backgroundColor = "green";
+    } else if (hunterHealth > 25) {
+        hunterHealthFill.style.backgroundColor = "orange";
+    } else {
+        hunterHealthFill.style.backgroundColor = "red";
+    } 
+
+    if (monsterHealth > 50) {
+        monsterHealthFill.style.backgroundColor = "green";
+    } else if (monsterHealth > 25) {
+        monsterHealthFill.style.backgroundColor = "orange";
+    } else {
+        monsterHealthFill.style.backgroundColor = "red";
+    } 
+};
+
