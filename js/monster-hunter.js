@@ -73,6 +73,7 @@ hunterAttackBtn.addEventListener('click', function(){
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter attacks, Monster has taken ${damage}HP of damage`);
     updateHealthBars();
+    
 });
 
 hunterSpecialBtn.addEventListener('click', function(){
@@ -80,6 +81,7 @@ hunterSpecialBtn.addEventListener('click', function(){
     monsterHealth = Math.max(0, monsterHealth - damage);
     logMessage(`Hunter used his special attack, Monster as taken ${damage}HP of damage`);
     updateHealthBars();
+    
 });
 
 hunterHealBtn.addEventListener('click', function(){
@@ -92,5 +94,21 @@ hunterGiveUpBtn.addEventListener('click', function(){
     if (gameActive && turn === "hunter") {
         gameActive = false;
         logMessage("Hunter has given up! The Monster wins!");
+        endGame(false);
     }
 });
+
+function checkGameOver() {
+    if (monsterHealth <= 0){
+        logMessage("You have killed the Monster! You win!");
+        endGame(true);
+        return true;
+    } else if (hunterHealth <= 0){
+        logMessage("The Monster has slain you. You failed.");
+        endGame(false);
+        return true;
+    };
+
+    return false;
+};
+
