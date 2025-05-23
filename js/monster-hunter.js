@@ -27,6 +27,7 @@ let gameActive = false;
 let turn = "none";
 
 toggleHunterActions(false);
+playAgainBtn.style.display = 'none';
 
 function startGame(){
     hunterHealth = maxHealth;
