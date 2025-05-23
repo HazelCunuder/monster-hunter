@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monster Hunter</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="A simple turn-based monster hunter game.">
+
+  <meta property="og:title" content="Monster Hunter Game">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content=""> <meta property="og:image" content=""> <meta property="og:image:alt" content="Screenshot of the Monster Hunter game interface.">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
+    <h1>Monster Hunter</h1>
+  </header>
+
+  <main> 
+    <section id="players-stats">
+      <h2 id="players-heading" class="sr-only">Player and Monster Health</h2>
+      
+      <div id="hunter-info">
+        <h3>Hunter</h3>
+          <div id="hunter-health-bar" class="health-bar"> <div id="hunter-health-fill" class="health-fill"></div>
+            <span id="hunter-health-number" class="health-number">100/100</span>
+          </div>
+      </div>
+
+      <div id="monster-info">
+        <h3>Monster</h3>
+          <div id="monster-health-bar" class="health-bar"> <div id="monster-health-fill" class="health-fill"></div>
+            <span id="monster-health-number" class="health-number">100/100</span>
+          </div>
+      </div>
+    </section>
+
+    <section id="game-controls"> 
+      <h2>Actions</h2> 
+      <input type="button" id="startgame" name="startgame" value="Start a new game">
+      <div class="button-grid">
+        <input type="button" id="attack" name="attack" value="Attack">
+        <input type="button" id="spk" name="spk" value="Special Attack">
+        <input type="button" id="heal" name="heal" value="Heal">
+        <input type="button" id="give-up" name="give-up" value="Give Up">
+      </div>
+      <input type="button" id="play-again-btn" name="playagain" value="Play Again">
+    </section>
+      
+    <section id="fight-log">
+      <h2 id="fight-log-heading">Fight Log</h2>
+    </section>
+  </main>
+  <script src="./js/monster-hunter.js"></script>
+</body>
+
+</html>
+
