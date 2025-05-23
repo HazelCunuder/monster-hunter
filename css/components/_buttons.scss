@@ -1,0 +1,39 @@
+#game-controls {
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-unit;
+
+    h2 {
+        margin-bottom: $spacing-unit * 0.5;
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-unit;
+        justify-items: stretch;
+        align-items: stretch;
+        width: 100%;
+
+        @media (min-width: 576px) {
+            max-width: 400px;
+        }
+    }
+
+    input[type="button"] {
+        @include button-styles($accent-color);
+        width: 100%;
+        max-width: 400px;
+
+        &#attack { @include button-styles($btn-attack-color); }
+        &#spk { @include button-styles($btn-special-color); }
+        &#heal { @include button-styles($btn-heal-color); }
+        &#give-up { @include button-styles($btn-giveup-color, $btn-giveup-text-color); }
+        
+        &#play-again-btn { @include button-styles($success-color); }
+        &#startgame { @include button-styles(darken($success-color, 20%)); }
+    }
+}
