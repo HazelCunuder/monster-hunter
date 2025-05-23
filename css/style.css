@@ -86,6 +86,29 @@ h3 {
   white-space: nowrap;
 }
 
+#game-controls {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+#game-controls h2 {
+  margin-bottom: 0.5rem;
+}
+#game-controls .button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-items: stretch;
+  align-items: stretch;
+  width: 100%;
+}
+@media (min-width: 576px) {
+  #game-controls .button-grid {
+    max-width: 400px;
+  }
+}
 #game-controls input[type=button] {
   background-color: #007bff;
   color: white;
@@ -97,8 +120,8 @@ h3 {
   transition: background-color 0.2s ease, transform 0.1s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0.5rem;
-  width: calc(100% - 1rem);
+  width: 100%;
+  max-width: 400px;
 }
 #game-controls input[type=button]:hover {
   opacity: 0.9;
@@ -115,7 +138,7 @@ h3 {
   transform: none;
 }
 #game-controls input[type=button]#attack {
-  background-color: #004d00;
+  background-color: #dc3545;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -141,7 +164,7 @@ h3 {
   transform: none;
 }
 #game-controls input[type=button]#spk {
-  background-color: #cc8400;
+  background-color: #007bff;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -167,7 +190,7 @@ h3 {
   transform: none;
 }
 #game-controls input[type=button]#heal {
-  background-color: rgb(0, 98.4, 204);
+  background-color: #28a745;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -193,8 +216,8 @@ h3 {
   transform: none;
 }
 #game-controls input[type=button]#give-up {
-  background-color: #cc0000;
-  color: white;
+  background-color: #f8f9fa;
+  color: #333;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 5px;
@@ -269,19 +292,6 @@ h3 {
   cursor: not-allowed;
   opacity: 0.6;
   transform: none;
-}
-@media (min-width: 576px) {
-  #game-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-  #game-controls input[type=button] {
-    width: auto;
-    flex: 1 1 auto;
-    min-width: 150px;
-  }
 }
 
 main {
@@ -359,18 +369,52 @@ main {
   overflow-y: auto;
   border: 1px solid #666666;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 #fight-log h2 {
   text-align: center;
   margin-bottom: 1rem;
   flex-shrink: 0;
+  order: -1;
+  width: 100%;
 }
 #fight-log p {
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   border-bottom: 1px dashed rgba(238, 238, 238, 0.2);
   padding-bottom: 0.5rem;
+  order: 0;
+  width: 100%;
+  text-align: left;
+  color: #eee;
+  padding: 0.5rem;
+  border-radius: 2.5px;
+}
+#fight-log p.log--hunter-attack {
+  background-color: rgba(0, 123, 255, 0.2);
+  color: #eee;
+}
+#fight-log p.log--monster-attack {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #eee;
+}
+#fight-log p.log--heal {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #eee;
+}
+#fight-log p.log--defeat {
+  background-color: rgba(220, 53, 69, 0.3);
+  color: #eee;
+  font-weight: bold;
+}
+#fight-log p.log--victory {
+  background-color: rgba(40, 167, 69, 0.3);
+  color: #eee;
+  font-weight: bold;
+}
+#fight-log p.log--info {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: #eee;
 }
 #fight-log p:last-child {
   border-bottom: none;
