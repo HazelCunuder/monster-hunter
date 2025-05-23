@@ -1,0 +1,26 @@
+#game-controls {
+    input[type="button"] {
+        @include button-styles($accent-color);
+        margin: $spacing-unit * 0.5;
+        width: calc(100% - #{2 * $spacing-unit * 0.5});
+        
+        &#attack { @include button-styles(darken($success-color, 10%)); }
+        &#spk { @include button-styles(darken($warning-color, 10%)); }
+        &#heal { @include button-styles(darken($accent-color, 10%)); }
+        &#give-up { @include button-styles(darken($danger-color, 10%)); }
+        &#play-again-btn { @include button-styles($success-color); }
+        &#startgame { @include button-styles(darken($success-color, 20%)); }
+    }
+
+    @media (min-width: 576px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: $spacing-unit;
+        input[type="button"] {
+            width: auto;
+            flex: 1 1 auto;
+            min-width: 150px;
+        }
+    }
+}
